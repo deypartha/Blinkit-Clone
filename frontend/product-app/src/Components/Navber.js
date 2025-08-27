@@ -1,13 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Navber.css"; // Assuming you have some styles for the navbar
+import "./Navber.css";
 
 export default function Navber({ cartItems = [] }) {
   const [open, setOpen] = useState(false);
   const menuRef = useRef(null);
   const btnRef = useRef(null);
-  const navigate = useNavigate(); // <-- navigation hook
+  const navigate = useNavigate();
 
+  // Close menu on outside click
   useEffect(() => {
     function onDocClick(e) {
       if (!open) return;
@@ -24,6 +25,7 @@ export default function Navber({ cartItems = [] }) {
     return () => document.removeEventListener("click", onDocClick);
   }, [open]);
 
+  // Close menu on Escape
   useEffect(() => {
     function onKey(e) {
       if (e.key === "Escape") setOpen(false);
@@ -34,47 +36,54 @@ export default function Navber({ cartItems = [] }) {
 
   return (
     <header className="navbar">
-      <div className="container">
-        <h1>
-          <span className="blink">blink</span>
-          <span className="it">it</span>
+      <div className="nav-container">
+        {/* Logo */}
+        <h1 className="logo" onClick={() => navigate("/")}>
+          <span className="blink">PBSHOP</span>
         </h1>
 
-        <select>
-          <option value="en">Rajpura, Punjab</option>
-          <option value="es">Patiala, Punjab</option>
-          <option value="fr">Fatehgarh Sahib, Punjab</option>
-          <option value="de">Mandi Gobindgarh, Punjab</option>
-        </select>
+        {/* Search bar in center */}
+        <div className="search-wrapper">
+          <input
+            type="text"
+            placeholder="Search products..."
+            className="search-bar"
+          />
+        </div>
 
-        <input type="text" placeholder="Search products..." />
-
-        {/* ... your menu toggle and search bar here ... */}
-
-        <div className="right">
-          <button className="cta" onClick={() => alert("Get Started clicked")}>
-            Get Started
-          </button>
-
-          {/* 🛒 Cart Button */}
-          <button className="cta" onClick={() => navigate("/cart")}>
+        {/* Cart button only */}
+        <div className="nav-buttons">
+          <button
+            className="cta"
+            onClick={() => navigate("/cart")}
+          >
             🛒 Cart
-            {cartItems && cartItems.length > 0 && (
-              <span
-                style={{
-                  marginLeft: 6,
-                  background: "#06b123ff",
-                  color: "#fff",
-                  borderRadius: "50%",
-                  padding: "2px 8px",
-                  fontSize: "12px",
-                }}
-              >
+            {cartItems.length > 0 && (
+              <span className="cart-badge">
                 {cartItems.reduce((sum, item) => sum + item.count, 0)}
               </span>
             )}
           </button>
         </div>
+
+        {/* Hamburger for mobile */}
+        <button
+          ref={btnRef}
+          className="hamburger"
+          onClick={() => setOpen(!open)}
+        >
+          ☰
+        </button>
+
+        {/* Mobile dropdown menu */}
+        {/* <nav ref={menuRef} className={`nav-menu ${open ? "active" : ""}`}>
+          <select className="location-select">
+            <option value="en">Rajpura, Punjab</option>
+            <option value="es">Patiala, Punjab</option>
+            <option value="fr">Fatehgarh Sahib, Punjab</option>
+            <option value="de">Mandi Gobindgarh, Punjab</option>
+          </select>
+        </nav> */}
       </div>
     </header>
   );

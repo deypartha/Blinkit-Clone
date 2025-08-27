@@ -1,10 +1,10 @@
 import './App.css';
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navber from './Components/Navber';
 import Home from './Components/Home'
 import CartPage from './Components/CartPage';
-import { CartProvider } from "./Components/CartContext"; // ✅ import provider
+import { CartProvider } from "./Components/CartContext"; 
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
           <Navber />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/cart" element={<CartPage />} />
+            <Route path="/cart" element={<CartPage cart={CartPage} />} />
           </Routes>
       </Router>
     </CartProvider>

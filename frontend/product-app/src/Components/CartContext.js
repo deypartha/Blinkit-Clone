@@ -1,49 +1,34 @@
-import React, { createContext, useState, useEffect } from "react";
-import axios from "axios";
+import React, { createContext, useState } from "react";
 
 export const CartContext = createContext();
 
-export function CartProvider({ children }) {
+export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState({});
-  const userId = "user123"; // later replace with logged-in user ID
 
-  // Load cart from server on page load
-  useEffect(() => {
-    axios.get(`http://localhost:5000/cart/${userId}`)
-      .then(res => {
-        const cartData = {};
-        res.data.items.forEach(item => {
-          cartData[item.productId] = { ...item };
-        });
-        setCart(cartData);
-      })
-      .catch(err => console.error(err));
-  }, []);
-
-  // Add to Cart
-  const addToCart = async (product) => {
-    const res = await axios.post("http://localhost:5000/cart/add", {
-      userId,
-      product,
+  const addToCart = (product) => {
+    setCart((prev) => {
+      const current = prev[product._id] || { ...product, count: 0 };
+      return {
+        ...prev,
+        [product._id]: { ...current, count: current.count + 1 },
+      };
     });
-    const cartData = {};
-    res.data.items.forEach(item => {
-      cartData[item.productId] = { ...item };
-    });
-    setCart(cartData);
   };
 
-  // Remove from Cart
-  const removeFromCart = async (product) => {
-    const res = await axios.post("http://localhost:5000/cart/remove", {
-      userId,
-      productId: product._id,
+  const removeFromCart = (product) => {
+    setCart((prev) => {
+      const current = prev[product._id];
+      if (!current) return prev;
+      if (current.count === 1) {
+        const newCart = { ...prev };
+        delete newCart[product._id];
+        return newCart;
+      }
+      return {
+        ...prev,
+        [product._id]: { ...current, count: current.count - 1 },
+      };
     });
-    const cartData = {};
-    res.data.items.forEach(item => {
-      cartData[item.productId] = { ...item };
-    });
-    setCart(cartData);
   };
 
   return (
@@ -51,4 +36,4 @@ export function CartProvider({ children }) {
       {children}
     </CartContext.Provider>
   );
-}
+};
