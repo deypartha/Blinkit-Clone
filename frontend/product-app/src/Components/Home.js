@@ -9,7 +9,7 @@ export default function Home() {
     { _id: 1, name: "Apple", price: 50, image: "https://www.shutterstock.com/image-photo/red-apple-cut-half-water-600nw-2532255795.jpg" },
     { _id: 2, name: "Banana", price: 20, image: "https://png.pngtree.com/png-clipart/20220716/ourmid/pngtree-banana-yellow-fruit-banana-skewers-png-image_5944324.png" },
     { _id: 3, name: "Mango", price: 60, image: "https://5.imimg.com/data5/SELLER/Default/2023/9/344928632/OW/RQ/XC/25352890/yellow-mango.jpeg" },
-    { _id: 4, name: "Orange", price: 40, image: "https://www.lifelinehealthcarebd.org/data/frontImages/gallery/product_image/Oranges-fruit.jpg" },
+    { _id: 4, name: "Orange", price: 40, image: "https://media.istockphoto.com/id/185284489/photo/orange.jpg?s=612x612&w=0&k=20&c=m4EXknC74i2aYWCbjxbzZ6EtRaJkdSJNtekh4m1PspE=" },
     { _id: 5, name: "Grapes", price: 70, image: "https://extension.psu.edu/media/catalog/product/5/9/598fa4dc3131dff06c11acffafcc0e6a.jpeg?quality=80&bg-color=255,255,255&fit=bounds&height=&width=&canvas=:" },
     { _id: 6, name: "Pineapple", price: 90, image: "https://png.pngtree.com/png-vector/20240906/ourmid/pngtree-realistic-pineapple-clipart-illustration-tropical-fruit-graphic-png-image_13764427.png" },
     { _id: 7, name: "Watermelon", price: 120, image: "https://www.millerchemical.com/wp-content/uploads/2021/03/watermelon-1142119394.png" },

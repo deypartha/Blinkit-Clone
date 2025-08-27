@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navber from './Components/Navber';
 import Home from './Components/Home'
 import CartPage from './Components/CartPage';
-import { CartProvider } from "./Components/CartContext"; 
+import { CartProvider } from "./Components/CartContext";
+import HelpAndSupport from './Components/HelpAndSupport'; 
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/cart" element={<CartPage cart={CartPage} />} />
+            <Route path="/help-support" element={<HelpAndSupport />} />
           </Routes>
       </Router>
     </CartProvider>

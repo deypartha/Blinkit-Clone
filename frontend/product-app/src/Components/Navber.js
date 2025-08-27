@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Navber.css";
+import HelpAndSupport from "./HelpAndSupport";
 
 export default function Navber({ cartItems = [] }) {
   const [open, setOpen] = useState(false);
@@ -39,7 +40,8 @@ export default function Navber({ cartItems = [] }) {
       <div className="nav-container">
         {/* Logo */}
         <h1 className="logo" onClick={() => navigate("/")}>
-          <span className="blink">PBSHOP</span>
+          <span className="blink">PB</span>
+          <span className="it">SHOP</span>
         </h1>
 
         {/* Search bar in center */}
@@ -51,18 +53,23 @@ export default function Navber({ cartItems = [] }) {
           />
         </div>
 
-        {/* Cart button only */}
-        <div className="nav-buttons">
-          <button
-            className="cta"
-            onClick={() => navigate("/cart")}
-          >
-            🛒 Cart
-            {cartItems.length > 0 && (
-              <span className="cart-badge">
-                {cartItems.reduce((sum, item) => sum + item.count, 0)}
-              </span>
-            )}
+        {/* Right side buttons */}
+        <div className="nav-right-buttons">
+          <div className="nav-buttons">
+            <button
+              className="cta"
+              onClick={() => navigate("/cart")}
+            >
+              🛒 Cart
+              {cartItems.length > 0 && (
+                <span className="cart-badge">
+                  {cartItems.reduce((sum, item) => sum + item.count, 0)}
+                </span>
+              )}
+            </button>
+          </div>
+          <button className="cta" onClick={() => navigate("/help-support")}> 
+            Help & Support
           </button>
         </div>
 
@@ -74,16 +81,6 @@ export default function Navber({ cartItems = [] }) {
         >
           ☰
         </button>
-
-        {/* Mobile dropdown menu */}
-        {/* <nav ref={menuRef} className={`nav-menu ${open ? "active" : ""}`}>
-          <select className="location-select">
-            <option value="en">Rajpura, Punjab</option>
-            <option value="es">Patiala, Punjab</option>
-            <option value="fr">Fatehgarh Sahib, Punjab</option>
-            <option value="de">Mandi Gobindgarh, Punjab</option>
-          </select>
-        </nav> */}
       </div>
     </header>
   );

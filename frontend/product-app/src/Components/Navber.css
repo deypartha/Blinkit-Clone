@@ -39,10 +39,16 @@
   border: 1px solid #ccc;
 }
 
-.nav-buttons {
+
+.nav-right-buttons {
   display: flex;
   align-items: center;
   gap: 15px;
+}
+
+.nav-buttons {
+  display: flex;
+  align-items: center;
 }
 
 .cta {
@@ -97,4 +103,16 @@
   .nav-menu.active {
     display: block;
   }
+}
+
+.blink{
+  color: #ffee00;
+  font-size: 34px;
+  font-weight: bold;
+}
+
+.it{
+  color: #4dfc02;
+  font-size: 34px;
+  font-weight: bold;
 }

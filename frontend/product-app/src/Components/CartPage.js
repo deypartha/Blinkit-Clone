@@ -5,6 +5,7 @@ import axios from "axios";
 function CartPage() {
   const { cart, addToCart, removeFromCart } = useContext(CartContext);
   const cartItems = Object.values(cart);
+  const navigate = require("react-router-dom").useNavigate();
 
   const totalItems = cartItems.reduce((acc, item) => acc + item.count, 0);
   const totalAmount = cartItems.reduce(
@@ -172,7 +173,7 @@ function CartPage() {
         }}
       >
         <button
-          onClick={() => window.history.back()}
+          onClick={() => navigate("/")}
           style={{
             padding: "10px 20px",
             border: "none",
